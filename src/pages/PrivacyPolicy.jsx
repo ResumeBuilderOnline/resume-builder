@@ -277,7 +277,7 @@ export default function PrivacyPolicy() {
             provided on our Website.
           </p>
           <p>
-            Email: your-email@example.com
+            Email: support.resumebuilder@gmail.com
           </p>
         </section>
       </div>

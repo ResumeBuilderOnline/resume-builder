@@ -301,7 +301,7 @@ export default function TermsOfService() {
             us using the contact information provided on our Website.
           </p>
           <p>
-            Email: your-email@example.com
+            Email: support.resumebuilder@gmail.com
           </p>
         </section>
       </div>
