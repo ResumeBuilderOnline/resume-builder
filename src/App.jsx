@@ -10,7 +10,7 @@ import TermsOfService from './pages/TermsOfService.jsx';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/resume-builder">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
