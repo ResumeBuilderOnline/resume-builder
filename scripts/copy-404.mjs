@@ -1,4 +1,10 @@
-import { copyFileSync, mkdirSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
+import {
+  copyFileSync,
+  mkdirSync,
+  existsSync,
+  readFileSync,
+  writeFileSync,
+} from 'node:fs';
 
 const routes = [
   'builder',
@@ -42,7 +48,24 @@ for (const route of routes) {
       );
   }
 
+  // Templates-specific SEO
+  if (route === 'templates') {
+    html = html
+      .replace(
+        /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i,
+        '<meta name="description" content="Explore professional resume templates with Resume Builder. Choose modern, ATS-friendly resume templates, customize your resume, preview it instantly, and download it as a PDF." />'
+      )
+      .replace(
+        /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i,
+        '<link rel="canonical" href="https://resumebuilderonline.github.io/resume-builder/templates" />'
+      )
+      .replace(
+        /<title>[\s\S]*?<\/title>/i,
+        '<title>Professional Resume Templates - ATS-Friendly Templates</title>'
+      );
+  }
+
   writeFileSync(`${routeDir}/index.html`, html);
 }
 
-console.log('Created GitHub Pages route entry points with Builder SEO.');
+console.log('Created GitHub Pages route entry points with SEO metadata.');
