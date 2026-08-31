@@ -13,7 +13,7 @@ export default function Navbar() {
       <div className="container navbar-inner">
         <Link to="/" className="navbar-brand">
           <img
-            src="/resumebuilder-logo.png"
+            src="/resume-builder/resumebuilder-logo.png"
             alt="ResumeBuilder"
             className="navbar-logo"
           />
