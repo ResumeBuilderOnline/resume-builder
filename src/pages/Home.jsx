@@ -77,12 +77,12 @@ export default function Home() {
         <div className="homep-hero-inner">
           <span className="homep-badge">Free online resume builder</span>
           <h1 className="homep-title">
-            Build a <span className="homep-highlight">Standout Resume</span> in
-            Minutes
+            Create a <span className="homep-highlight">Professional Resume</span>{' '}
+            Online in Minutes
           </h1>
           <p className="homep-subtitle">
-            Create professional, ATS-friendly resumes with beautiful templates,
-            a live A4 preview, and one-click PDF export — no design skills needed.
+            Create a professional, ATS-friendly resume online with modern templates,
+            a live A4 preview, and one-click PDF download — no design skills needed.
           </p>
           <div className="homep-actions">
             <Link to="/builder" className="btn btn-primary btn-lg">
@@ -99,9 +99,8 @@ export default function Home() {
       <section className="homep-visual">
         <div className="container">
           <Heading
-            title="Templates that impress"
-            subtitle="Pick a layout and make it yours with the live editor."
-            align="center"
+            title="Professional Resume Templates"
+            subtitle="Choose a professional resume template and customize it with our easy-to-use live editor."            align="center"
             className="mb-6"
           />
           <div className="homep-visual-grid">
@@ -131,7 +130,7 @@ export default function Home() {
       <section className="homep-benefits">
         <div className="container">
           <Heading
-            title="Why use our Resume Builder?"
+            title="Why Choose Our Resume Builder?"
             subtitle="Everything you need to land your next opportunity."
             align="center"
             className="mb-6"
@@ -152,8 +151,8 @@ export default function Home() {
       <section className="homep-templates">
         <div className="container">
           <Heading
-            title="Choose your template"
-            subtitle="From clean and minimal to fully ATS-optimized."
+            title="Choose a Resume Template"
+            subtitle="Choose from clean, professional, and ATS-friendly resume templates."
             align="center"
             className="mb-6"
           />
@@ -179,9 +178,11 @@ export default function Home() {
       {/* ===== CTA ===== */}
       <section className="homep-cta">
         <div className="homep-cta-inner">
-          <h2 className="homep-cta-title">Ready to build your resume?</h2>
+          <h2 className="homep-cta-title">
+            Ready to Create Your Professional Resume?
+          </h2>
           <p className="homep-cta-text">
-            It takes less than five minutes to create a resume you will be proud of.
+            Create an ATS-friendly resume in minutes with our easy-to-use online resume builder.
           </p>
           <Link to="/builder" className="btn btn-white btn-lg">
             Create Your Resume
