@@ -187,6 +187,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== Contact ===== */}
+      <section className="homep-contact" id="contact">
+        <div className="container">
+          <Heading
+            title="Contact Us"
+            subtitle="Have a question or found an issue? We'd be happy to hear from you."
+            align="center"
+            className="mb-6"
+          />
+
+          <div className="homep-contact-content">
+            <p>
+              For questions, feedback, or support regarding Resume Builder Online,
+              please contact us by email.
+            </p>
+
+            <a
+              href="mailto:support.resumebuilder@gmail.com"
+              className="btn btn-primary"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ===== CTA ===== */}
       <section className="homep-cta">
         <div className="homep-cta-inner">

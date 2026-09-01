@@ -2429,6 +2429,7 @@ textarea.form-input {
     #4f46e5,
     #c026d3
   );
+  
 
   color: #ffffff;
 
@@ -2620,4 +2621,23 @@ textarea.form-input {
   .legal-container p {
     font-size: 15px;
   }
+}
+
+/* ===== Contact Section ===== */
+
+.homep-contact {
+  padding: var(--space-16) 0;
+  background: var(--color-background);
+}
+
+.homep-contact-content {
+  max-width: 650px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.homep-contact-content p {
+  margin-bottom: var(--space-6);
+  color: var(--color-text-muted);
+  line-height: 1.7;
 }
