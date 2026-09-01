@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useResume } from '../hooks/useResume.js';
 import ResumePreview from '../features/preview/ResumePreview.jsx';
 import PersonalInfoForm from '../features/resume/components/PersonalInfoForm.jsx';
@@ -44,7 +44,7 @@ export default function Builder() {
   const [exporting, setExporting] = useState(false);
   const previewRef = useRef(null);
 
-  // Ensure there's an active resume (create once after mount / storage load)
+  // Ensure there's an active resume after storage has loaded.
   useEffect(() => {
     if (!hasLoaded) return;
     if (!activeResumeId) {
@@ -71,12 +71,15 @@ export default function Builder() {
     updateResume(resume.id, { accentColor: color });
   };
 
-const handleExportPDF = async () => {
+  const handleExportPDF = async () => {
     if (!previewRef.current) return;
+
     setExporting(true);
+
     try {
       const pagesRoot = previewRef.current.querySelector('.a4-pages');
       const target = pagesRoot || previewRef.current;
+
       await exportResumeToPDF(target, resume);
     } catch (error) {
       console.error('PDF export failed:', error);
@@ -87,35 +90,49 @@ const handleExportPDF = async () => {
   };
 
   return (
-    <div className="builder">
+    <main className="builder">
       <div className="builder-toolbar no-print">
         <div className="container builder-toolbar-inner">
           <div>
-            <h2 className="builder-title">Resume Builder</h2>
+            <h1 className="builder-title">
+              Free Online Resume Builder
+            </h1>
+
             <p className="builder-progress text-muted">
+              Create an ATS-friendly resume with live preview and PDF download.
               Profile completeness: {completeness}%
             </p>
           </div>
+
           <div className="builder-actions">
             <button
               type="button"
               className="btn btn-outline btn-sm"
               onClick={() => setShowPreview((v) => !v)}
+              aria-label={
+                showPreview
+                  ? 'Hide resume preview'
+                  : 'Show resume preview'
+              }
             >
               {showPreview ? 'Hide Preview' : 'Show Preview'}
             </button>
+
             <button
               type="button"
               className="btn btn-secondary btn-sm"
               onClick={handleExportPDF}
               disabled={exporting}
+              aria-label="Download resume as PDF"
             >
               {exporting ? 'Exporting...' : '⬇ Download PDF'}
             </button>
+
             <button
               type="button"
               className="btn btn-primary btn-sm"
               onClick={() => navigate('/dashboard')}
+              aria-label="Save resume and open dashboard"
             >
               Save & Dashboard
             </button>
@@ -128,51 +145,70 @@ const handleExportPDF = async () => {
         <div className="builder-editor">
           <div className="builder-settings">
             <div className="form-section">
-              <h3 className="form-section-title">Template & Style</h3>
+              <h2 className="form-section-title">
+                Resume Template & Style
+              </h2>
+
               <div className="template-selector">
                 {templates.map((t) => (
                   <button
                     key={t.id}
                     type="button"
                     className={`template-chip ${
-                      resume.templateId === t.id ? 'template-chip-active' : ''
+                      resume.templateId === t.id
+                        ? 'template-chip-active'
+                        : ''
                     }`}
                     style={{ '--chip-color': t.previewColor }}
                     onClick={() => handleTemplateChange(t.id)}
+                    aria-label={`Select ${t.name} resume template`}
+                    aria-pressed={resume.templateId === t.id}
                   >
                     {t.name}
                   </button>
                 ))}
               </div>
+
               <div className="form-field mt-3">
-                <label className="form-label">Accent Color</label>
+                <label className="form-label" htmlFor="resume-accent-color">
+                  Accent Color
+                </label>
+
                 <input
+                  id="resume-accent-color"
                   type="color"
                   className="color-input"
                   value={resume.accentColor}
                   onChange={(e) => handleAccentChange(e.target.value)}
+                  aria-label="Choose resume accent color"
                 />
               </div>
             </div>
           </div>
 
-          <div className="builder-tabs">
+          <nav
+            className="builder-tabs"
+            aria-label="Resume sections"
+          >
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 type="button"
                 className={`builder-tab ${
-                  activeTab === tab.id ? 'builder-tab-active' : ''
+                  activeTab === tab.id
+                    ? 'builder-tab-active'
+                    : ''
                 }`}
                 onClick={() => setActiveTab(tab.id)}
+                aria-label={`Edit ${tab.label} section`}
+                aria-selected={activeTab === tab.id}
               >
                 {tab.label}
               </button>
             ))}
-          </div>
+          </nav>
 
           <div className="builder-form-body">
-
             {activeTab === 'personal' && (
               <PersonalInfoForm
                 personal={resume.personal}
@@ -192,7 +228,7 @@ const handleExportPDF = async () => {
                 items={resume.sections.skills}
                 onChange={handleSectionChange('skills')}
               />
-            )}         
+            )}
 
             {activeTab === 'experience' && (
               <ExperienceForm
@@ -235,22 +271,52 @@ const handleExportPDF = async () => {
                 onChange={handleSectionChange('languages')}
               />
             )}
-
           </div>
+
+          <section className="builder-seo-content">
+            <h2>Create an ATS-Friendly Resume Online</h2>
+
+            <p>
+              Use this free online resume builder to create a professional,
+              ATS-friendly resume. Add your personal information, education,
+              skills, work experience, internships, projects, certifications,
+              achievements, and languages.
+            </p>
+
+            <p>
+              Choose a professional resume template, customize the style,
+              preview your resume in real time, and download your completed
+              resume as a PDF.
+            </p>
+
+            <p>
+              Looking for a different design?{' '}
+              <Link
+                to="/templates"
+                aria-label="Explore professional resume templates"
+              >
+                Explore our professional resume templates
+              </Link>
+              .
+            </p>
+          </section>
         </div>
 
         {/* Preview column */}
         {showPreview && (
-          <div className="builder-preview">
+          <aside
+            className="builder-preview"
+            aria-label="Live resume preview"
+          >
             <div className="preview-wrap" ref={previewRef}>
               <ResumePreview
                 resume={resume}
                 templateId={resume.templateId}
               />
             </div>
-          </div>
+          </aside>
         )}
       </div>
-    </div>
+    </main>
   );
 }
