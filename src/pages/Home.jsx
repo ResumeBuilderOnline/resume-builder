@@ -85,10 +85,18 @@ export default function Home() {
             a live A4 preview, and one-click PDF download — no design skills needed.
           </p>
           <div className="homep-actions">
-            <Link to="/builder" className="btn btn-primary btn-lg">
+            <Link
+              to="/builder"
+              className="btn btn-primary btn-lg"
+              aria-label="Create your professional resume online"
+            >
               Create Your Resume
             </Link>
-            <Link to="/templates" className="btn btn-outline btn-lg">
+            <Link
+              to="/templates"
+              className="btn btn-outline btn-lg"
+              aria-label="View professional resume templates"
+            >
               View Templates
             </Link>
           </div>
@@ -158,8 +166,12 @@ export default function Home() {
           />
           <div className="homep-template-grid">
             {templates.map((t) => (
-              <Link to="/templates" className="homep-template-card" key={t.id}>
-                <div
+              <Link
+                to="/templates"
+                className="homep-template-card"
+                key={t.id}
+                aria-label={`View ${t.name} resume template`}
+              >                <div
                   className="homep-template-preview"
                   style={{ backgroundColor: t.previewColor }}
                 >
@@ -184,7 +196,11 @@ export default function Home() {
           <p className="homep-cta-text">
             Create an ATS-friendly resume in minutes with our easy-to-use online resume builder.
           </p>
-          <Link to="/builder" className="btn btn-white btn-lg">
+          <Link
+            to="/builder"
+            className="btn btn-white btn-lg"
+            aria-label="Create your professional resume online"
+          >
             Create Your Resume
           </Link>
         </div>
